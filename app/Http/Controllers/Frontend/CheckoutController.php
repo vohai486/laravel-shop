@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\CheckoutRequest;
+use App\Jobs\NotifyUserCreatedOrdered;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -97,6 +98,9 @@ class CheckoutController extends Controller
                 $item->productVariant->decrement('inventory_quantity', $item->qty);
                 $item->delete();
             }
+
+            NotifyUserCreatedOrdered::dispatch($order, $user);
+
             return to_route('home');
         } catch (\Exception $e) {
             return redirect()->back();

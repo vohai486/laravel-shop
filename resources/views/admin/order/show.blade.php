@@ -85,11 +85,11 @@
                                         @endphp
                                         <tr>
                                             <td>{{ $orderItem->id }}</td>
-                                            <td>{{ $orderItem->product->name }}</td>
-                                            <td>{{ $orderItem->product->price }}
+                                            <td>{{ $orderItem->title }}</td>
+                                            <td>{{ $orderItem->price }}
                                             </td>
                                             <td>{{ $orderItem->qty }}</td>
-                                            <td>{{ $orderItem->qty * $orderItem->product->price }}</td>
+                                            <td>{{ $item->qty * $item->price }}</td>
                                         </tr>
                                     @endforeach
 
